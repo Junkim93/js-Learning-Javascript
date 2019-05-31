@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="rainbow"> over the rainbow </div>
+    <div class="rainbow2"> Hello, World! </div>
+
+    <script>
+        // 독립적으로 실행되지 않음
+        // const getNextRainbowColor = (function() {
+        //     const colors = ['red', 'orange', 'yellow', 'green',
+        //         'blue', 'indigo', 'violet'];
+        //     let colorIndex = -1;
+        //     return function() {
+        //         if(++colorIndex >= colors.length) colorIndex = 0;
+        //         return colors[colorIndex];
+        //     };
+        // })();
+
+        // setInterval(function() {
+        //     document.querySelector('.rainbow')
+        //         .style['background-color'] = getNextRainbowColor();
+        // }, 1500);
+
+        // const getColor = getNextRainbowColor;
+        // setInterval(function() {
+        //     document.querySelector('.rainbow2')
+        //         .style['background-color'] = getColor();
+        // }, 1500);
+
+        // 다른 상수에 담아주면 독립적으로 실행됨
+        function getRainbowIterator() {
+            const colors = ['red', 'orange', 'yellow', 'green',
+                'blue', 'indigo', 'violet'];
+            let colorIndex = -1;
+            return {
+                next() {
+                    if (++colorIndex >= colors.length) colorIndex = 0;
+                    return { value: colors[colorIndex], done: false };
+                }
+            };
+        }
+
+        const rainbowIterator = getRainbowIterator();
+        setInterval(function() {
+            document.querySelector('.rainbow')
+                .style['background-color'] = rainbowIterator.next().value;
+        }, 1500)
+
+        const rainbowIterator2 = getRainbowIterator();
+        setInterval(function() {
+            document.querySelector('.rainbow2')
+                .style['background-color'] = rainbowIterator2.next().value;
+        }, 1500)
+
+    </script>
+</body>
+
+</html>
