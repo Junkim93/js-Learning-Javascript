@@ -1,2 +1,4 @@
-# js-Learning-Javascript
-&lt;Learning Javascript> study a book 
+= Learning JavaScript, 3rd Edition
+== Example code repository
+This is a repo for personal study
+
